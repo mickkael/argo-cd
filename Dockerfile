@@ -129,7 +129,7 @@ RUN if [ "$BUILD_ALL_CLIS" = "true" ] ; then \
 ####################################################################################################
 FROM argocd-base
 COPY --from=argocd-build /go/src/github.com/argoproj/argo-cd/dist/argocd* /usr/local/bin/
-COPY --from=argocd-ui ./src/dist/app /shared/app
+COPY --from=argocd-ui ./src/app /shared/app
 
 USER root
 RUN ln -s /usr/local/bin/argocd /usr/local/bin/argocd-util
