@@ -24,7 +24,7 @@ jobs:
       # Set QEMU
       - run: |
           docker pull tonistiigi/binfmt:latest
-	  docker run --rm --privileged tonistiigi/binfmt:latest --install arm64
+          docker run --rm --privileged tonistiigi/binfmt:latest --install arm64
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
