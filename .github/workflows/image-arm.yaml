@@ -31,7 +31,6 @@ jobs:
         
       # build
       - run: |
-          docker images -a --format "{{.ID}}" | xargs -I {} docker rmi {}
           docker buildx -t $(IMAGE_PREFIX)argocd:$(IMAGE_TAG)-arm . --build-arg BUILD_ALL_CLIS="false" --platform linux/arm64
 # make armimage DOCKER_PUSH=false IMAGE_NAMESPACE=quay.io/mickkael IMAGE_TAG=${{ steps.image.outputs.tag }}
         working-directory: ./src/github.com/mickkael/argo-cd
