@@ -296,6 +296,7 @@ endif
 # which would take a really long time.
 armimage:
 	docker build -t $(IMAGE_PREFIX)argocd:$(IMAGE_TAG)-arm . --build-arg BUILD_ALL_CLIS="false"
+	@if [ "$(DOCKER_PUSH)" = "true" ] ; then docker push $(IMAGE_PREFIX)argocd:$(IMAGE_TAG)-arm ; fi
 
 .PHONY: builder-image
 builder-image:
