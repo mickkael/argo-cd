@@ -31,7 +31,7 @@ jobs:
         
       # build
       - run: |
-          docker buildx -t quay.io/mickkael/argocd:latest-arm . --build-arg BUILD_ALL_CLIS="false" --platform linux/arm64
+          docker buildx build -t quay.io/mickkael/argocd:latest-arm . --build-arg BUILD_ALL_CLIS="false" --platform linux/arm64
 # make armimage DOCKER_PUSH=false IMAGE_NAMESPACE=quay.io/mickkael IMAGE_TAG=${{ steps.image.outputs.tag }}
         working-directory: ./src/github.com/mickkael/argo-cd
 
