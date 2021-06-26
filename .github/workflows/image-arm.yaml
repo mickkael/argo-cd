@@ -31,14 +31,14 @@ jobs:
         
       # build
       - run: |
-          docker buildx build -t quay.io/mickkael/argocd:latest-arm . --build-arg BUILD_ALL_CLIS="false" --platform linux/arm64
+          docker buildx build -t quay.io/mickkael/argocd:${{ steps.image.outputs.tag }}-arm . --build-arg BUILD_ALL_CLIS="false" --platform linux/arm64
 # make armimage DOCKER_PUSH=false IMAGE_NAMESPACE=quay.io/mickkael IMAGE_TAG=${{ steps.image.outputs.tag }}
         working-directory: ./src/github.com/mickkael/argo-cd
 
       # publish
       - run: |
           docker login quay.io --username $USERNAME --password $PASSWORD
-          docker push quay.io/mickkael/argocd:${{ steps.image.outputs.tag }}
+          docker push quay.io/mickkael/argocd:${{ steps.image.outputs.tag }}-arm
         env:
           USERNAME: ${{ secrets.QUAYIO_USERNAME }}
           PASSWORD: ${{ secrets.QUAYIO_TOKEN }}
