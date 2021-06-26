@@ -28,17 +28,10 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-      
-      # Login
-      - run: |
-          docker login quay.io --username $USERNAME --password $PASSWORD
-        env:
-          USERNAME: ${{ secrets.QUAYIO_USERNAME }}
-          PASSWORD: ${{ secrets.QUAYIO_TOKEN }}
         
       # build
       - run: |
-          docker buildx build -t quay.io/mickkael/argocd:${{ steps.image.outputs.tag }}-arm . --build-arg BUILD_ALL_CLIS="false" --platform linux/arm64 --push
+          docker buildx build -t quay.io/mickkael/argocd:${{ steps.image.outputs.tag }}-arm . --build-arg BUILD_ALL_CLIS="false" --platform linux/arm64 -o image
           docker image ls
 # make armimage DOCKER_PUSH=false IMAGE_NAMESPACE=quay.io/mickkael IMAGE_TAG=${{ steps.image.outputs.tag }}
         working-directory: ./src/github.com/mickkael/argo-cd
